@@ -18,6 +18,9 @@ app.use(cors({
     origin:"*"
 }))
 
+app.get("/",(req,res)=>{
+    res.json("code is working")
+})
 
 app.get("/health",(req,res)=>res.json({status:"ok"}));
 
