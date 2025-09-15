@@ -1,7 +1,7 @@
 import dotenv from "dotenv";
 dotenv.config();
 import express from "express";
-import mongoose from "mongoose";
+
 import cors from "cors";
 import userrouter from "./routes/user.routes.js";
 import tenantrouter from "./routes/tenants.routes.js";
@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(
   cors({
     origin:
-      "https://tenancy-backend-git-main-anils-projects-ea2e6ea9.vercel.app",
+      "https://tenant-forntend.vercel.app",
     methods: ["GET", "POST", "PUT", "DELETE"], // allow methods you need
     allowedHeaders: ["Content-Type", "Authorization"], // allow headers
   })
