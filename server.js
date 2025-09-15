@@ -15,7 +15,7 @@ const app  = express();
 connectDB();
 app.use(express.json());
 app.use(cors({
-    origin:"*"
+    origin:"https://tenancy-backend-git-main-anils-projects-ea2e6ea9.vercel.app"
 }))
 
 app.get("/",(req,res)=>{
