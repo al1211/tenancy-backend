@@ -1,36 +1,39 @@
-import dotenv from "dotenv"
+import dotenv from "dotenv";
 dotenv.config();
-import express from "express"
-import mongoose from "mongoose"
-import cors from  "cors"
+import express from "express";
+import mongoose from "mongoose";
+import cors from "cors";
 import userrouter from "./routes/user.routes.js";
 import tenantrouter from "./routes/tenants.routes.js";
 import notesrouter from "./routes/notes.routes.js";
 import errorHandler from "./middlewares/errorHandler.middleware.js";
 import connectDB from "./config/db.js";
 
-
-
-const app  = express();
+const app = express();
 connectDB();
 app.use(express.json());
-app.use(cors({
-    origin:"https://tenancy-backend-git-main-anils-projects-ea2e6ea9.vercel.app"
-}))
+app.use(
+  cors({
+    origin:
+      "https://tenancy-backend-git-main-anils-projects-ea2e6ea9.vercel.app",
+    methods: ["GET", "POST", "PUT", "DELETE"], // allow methods you need
+    allowedHeaders: ["Content-Type", "Authorization"], // allow headers
+  })
+);
 
-app.get("/",(req,res)=>{
-    res.json("code is working")
-})
+app.get("/", (req, res) => {
+  res.json("code is working");
+});
 
-app.get("/health",(req,res)=>res.json({status:"ok"}));
+app.get("/health", (req, res) => res.json({ status: "ok" }));
 
-app.use("/api/auth",userrouter);
-app.use("/api/tenants",tenantrouter);
-app.use("/api/notes",notesrouter);
+app.use("/api/auth", userrouter);
+app.use("/api/tenants", tenantrouter);
+app.use("/api/notes", notesrouter);
 app.use(errorHandler);
 
-const PORT=process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
 
-app.listen(PORT,()=>{
-    console.log("server is listen")
-})
+app.listen(PORT, () => {
+  console.log("server is listen");
+});
